@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const [testString, setTestString] = useState<{testString: string}>({testString: ""});
+
+  useEffect(() => {
+    fetch('/api/testRoute', {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        setTestString(data);
+      })
+      .catch(e => {
+        console.error(e);
+      });
+  }, [setTestString]);
+
   return (
     <div className="App">
       <header className="App-header">

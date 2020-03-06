@@ -13,8 +13,7 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: client
-  strategy:
-    type: Recreate
+  strategy: {}
   template:
     metadata:
       annotations:
@@ -22,23 +21,16 @@ spec:
         kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
-        io.kompose.network/shared: "true"
         io.kompose.service: client
     spec:
       containers:
-      - image: client
-        imagePullPolicy: ""
+      - image: killmeclient
+        imagePullPolicy: "Never"
         name: client
         ports:
-        - containerPort: 3000
+        - containerPort: 5000
         resources: {}
-        volumeMounts:
-        - mountPath: /client/src
-          name: client-claim0
       restartPolicy: Always
       serviceAccountName: ""
-      volumes:
-      - name: client-claim0
-        persistentVolumeClaim:
-          claimName: client-claim0
+      volumes: null
 status: {}

@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ApiClent from './services/ApiClient';
 
 function App() {
   const [testString, setTestString] = useState<{testString: string}>({testString: ""});
   const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
-    fetch('api:3001/api/testRoute', {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
+    ApiClent.get<{ testString: string }>('/api/testRoute')
       .then(data => {
         setTestString(data);
-      })
-      .catch(e => {
-        console.error(e);
       });
   }, [setTestString]);
 

@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
     res.json({doneMessage: "we are done"});
 });
 
-app.get("/api/testRoute", (req, res) => {
+app.get("/testRoute", (req, res) => {
     res.json({testString: "This is a test string"});
 });
 
